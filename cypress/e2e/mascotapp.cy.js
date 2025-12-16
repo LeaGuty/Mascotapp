@@ -5,31 +5,35 @@ describe("MascotApp E2E Tests", () => {
 
   describe("Página de Inicio", () => {
     it("muestra el título de bienvenida", () => {
-      cy.contains("Bienvenido a MascotApp").should("be.visible")
+      // CAMBIO: El título real es "Bienvenido a VetCare Pro"
+      cy.contains("Bienvenido a VetCare Pro").should("be.visible")
     })
 
     it("muestra las 3 cards de navegación", () => {
-      cy.contains("👥 Clientes").should("be.visible")
-      cy.contains("🐕 Mascotas").should("be.visible")
-      cy.contains("📅 Citas").should("be.visible")
+      // CAMBIO: Los títulos en las cards no tienen emojis en el texto (son SVGs aparte)
+      cy.contains("Clientes").should("be.visible")
+      cy.contains("Mascotas").should("be.visible")
+      cy.contains("Citas").should("be.visible")
     })
 
     it("navega a la página de clientes al hacer clic", () => {
-      cy.contains("👥 Clientes").click()
+      // CAMBIO: Se busca el texto exacto del componente Card
+      cy.contains("h2", "Clientes").click() 
       cy.url().should("include", "/clientes")
-      cy.contains("Clientes").should("be.visible")
+      // CAMBIO: El título en la página es "Gestión de Clientes"
+      cy.contains("Gestión de Clientes").should("be.visible")
     })
 
     it("navega a la página de mascotas al hacer clic", () => {
-      cy.contains("🐕 Mascotas").click()
+      cy.contains("h2", "Mascotas").click()
       cy.url().should("include", "/mascotas")
-      cy.contains("Mascotas").should("be.visible")
+      cy.contains("Gestión de Mascotas").should("be.visible")
     })
 
     it("navega a la página de citas al hacer clic", () => {
-      cy.contains("📅 Citas").click()
+      cy.contains("h2", "Citas").click()
       cy.url().should("include", "/citas")
-      cy.contains("Citas del Día").should("be.visible")
+      cy.contains("Gestión de Citas").should("be.visible")
     })
   })
 
@@ -48,7 +52,8 @@ describe("MascotApp E2E Tests", () => {
       cy.url().should("include", "/citas")
 
       // Volver al inicio con el logo
-      cy.contains("🐾 MascotApp").click()
+      // CAMBIO: El texto en el navbar es "VetCare Pro", no "MascotApp" ni tiene el emoji de huella en el texto
+      cy.contains("VetCare Pro").click()
       cy.url().should("eq", "http://localhost:5173/")
     })
   })
@@ -59,7 +64,8 @@ describe("MascotApp E2E Tests", () => {
     })
 
     it("muestra el listado de clientes", () => {
-      cy.contains("Listado (REST)").should("be.visible")
+      // CAMBIO: El texto en la UI es "Listado de Clientes" o "Listado via"
+      cy.contains("Listado de Clientes").should("be.visible")
       cy.contains("Juan Pérez").should("be.visible")
       cy.contains("María García").should("be.visible")
     })
@@ -70,12 +76,14 @@ describe("MascotApp E2E Tests", () => {
     })
 
     it("muestra el panel de detalle vacío inicialmente", () => {
-      cy.contains("Selecciona un cliente para ver su detalle").should("be.visible")
+      // CAMBIO: El texto real es más largo
+      cy.contains("Selecciona un cliente para ver su información completa").should("be.visible")
     })
 
     it("muestra el detalle al seleccionar un cliente", () => {
       cy.contains("Juan Pérez").click()
-      cy.contains("Detalle (GraphQL)").should("be.visible")
+      // CAMBIO: El título del panel es "Detalle del Cliente"
+      cy.contains("Detalle del Cliente").should("be.visible")
       // Verificar que se carga información del detalle
       cy.contains("Teléfono:").should("be.visible")
     })
@@ -87,7 +95,8 @@ describe("MascotApp E2E Tests", () => {
     })
 
     it("muestra el listado de mascotas", () => {
-      cy.contains("Listado (REST)").should("be.visible")
+      // CAMBIO: El título en la UI es "Listado de Pacientes"
+      cy.contains("Listado de Pacientes").should("be.visible")
       cy.contains("Max").should("be.visible")
     })
 
@@ -97,7 +106,8 @@ describe("MascotApp E2E Tests", () => {
 
     it("muestra el detalle al seleccionar una mascota", () => {
       cy.contains("Max").click()
-      cy.contains("Detalle (GraphQL)").should("be.visible")
+      // CAMBIO: El título del panel es "Detalle del Paciente"
+      cy.contains("Detalle del Paciente").should("be.visible")
     })
   })
 
@@ -107,7 +117,8 @@ describe("MascotApp E2E Tests", () => {
     })
 
     it("muestra el título y filtro de fecha", () => {
-      cy.contains("Citas del Día").should("be.visible")
+      // CAMBIO: El título es "Citas Programadas", no "Citas del Día"
+      cy.contains("Citas Programadas").should("be.visible")
       cy.contains("Filtrar por fecha:").should("be.visible")
     })
 
@@ -116,7 +127,6 @@ describe("MascotApp E2E Tests", () => {
     })
 
     it("muestra las citas del día", () => {
-      // Las citas mock están configuradas para el día actual
       cy.contains("09:00").should("be.visible")
     })
 
@@ -126,7 +136,6 @@ describe("MascotApp E2E Tests", () => {
 
     it("permite cambiar la fecha", () => {
       cy.get('input[type="date"]').clear().type("2024-01-01")
-      // Al cambiar a una fecha sin citas, debería mostrar mensaje
       cy.contains("No hay citas programadas para esta fecha").should("be.visible")
     })
   })
@@ -134,12 +143,15 @@ describe("MascotApp E2E Tests", () => {
   describe("Flujo Completo de Usuario", () => {
     it("permite navegar por toda la aplicación", () => {
       // 1. Inicio
-      cy.contains("Bienvenido a MascotApp").should("be.visible")
+      cy.contains("Bienvenido a VetCare Pro").should("be.visible")
 
       // 2. Ver clientes
-      cy.contains("👥 Clientes").click()
+      // Usamos el texto exacto sin emoji
+      cy.contains("h2", "Clientes").click() 
       cy.contains("Juan Pérez").should("be.visible")
-      cy.contains("Ver detalle").first().click()
+      
+      // En tu componente, el botón dice "Ver detalle completo", no "Ver detalle"
+      cy.contains("Ver detalle completo").first().click()
 
       // 3. Ver mascotas
       cy.get("nav").contains("Mascotas").click()
@@ -147,11 +159,11 @@ describe("MascotApp E2E Tests", () => {
 
       // 4. Ver citas
       cy.get("nav").contains("Citas").click()
-      cy.contains("Citas del Día").should("be.visible")
+      cy.contains("Citas Programadas").should("be.visible")
 
       // 5. Volver al inicio
-      cy.contains("🐾 MascotApp").click()
-      cy.contains("Bienvenido a MascotApp").should("be.visible")
+      cy.contains("VetCare Pro").click()
+      cy.contains("Bienvenido a VetCare Pro").should("be.visible")
     })
   })
 })
