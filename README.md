@@ -71,7 +71,7 @@ Sigue estos pasos para configurar el proyecto localmente:
 1.  **Clonar el repositorio:**
 
     ```bash
-    git clone <URL_DE_TU_REPOSITORIO>
+    git clone https://github.com/LeaGuty/Mascotapp
     cd mascotapp
     ```
 
