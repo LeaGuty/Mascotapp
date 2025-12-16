@@ -17,6 +17,7 @@ describe("ClientesPage", () => {
   test("muestra estado de carga inicialmente", () => {
     fetch.mockImplementation(() => new Promise(() => {}))
     renderWithProviders(<ClientesPage />)
+    // El texto "Cargando clientes..." es correcto según tu componente
     expect(screen.getByText("Cargando clientes...")).toBeInTheDocument()
   })
 
@@ -46,7 +47,8 @@ describe("ClientesPage", () => {
     renderWithProviders(<ClientesPage />)
 
     await waitFor(() => {
-      expect(screen.getByText("Clientes")).toBeInTheDocument()
+      // Actualizado para buscar el título completo exacto
+      expect(screen.getByText("Gestión de Clientes")).toBeInTheDocument()
     })
   })
 
@@ -58,7 +60,8 @@ describe("ClientesPage", () => {
     renderWithProviders(<ClientesPage />)
 
     await waitFor(() => {
-      expect(screen.getByText("Selecciona un cliente para ver su detalle")).toBeInTheDocument()
+      // Actualizado el texto del placeholder que era diferente en el componente real
+      expect(screen.getByText("Selecciona un cliente para ver su información completa")).toBeInTheDocument()
     })
   })
 })

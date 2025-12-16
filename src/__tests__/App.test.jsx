@@ -11,7 +11,8 @@ describe("App", () => {
         <App />
       </Provider>
     )
-    expect(screen.getByText("🐾 MascotApp")).toBeInTheDocument()
+    // CORRECCIÓN: El nombre de la app es VetCare Pro y no tiene emoji en el texto
+    expect(screen.getByText("VetCare Pro")).toBeInTheDocument()
   })
 
   test("renderiza la página de inicio por defecto", () => {
@@ -21,6 +22,7 @@ describe("App", () => {
         <App />
       </Provider>
     )
-    expect(screen.getByText("Bienvenido a MascotApp")).toBeInTheDocument()
+    // CORRECCIÓN: El título de bienvenida cambió
+    expect(screen.getByText("Bienvenido a VetCare Pro")).toBeInTheDocument()
   })
 })

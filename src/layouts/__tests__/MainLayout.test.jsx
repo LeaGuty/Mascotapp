@@ -11,9 +11,10 @@ const renderWithRouter = (initialRoute = "/") => {
 }
 
 describe("MainLayout", () => {
-  test("renderiza el logo MascotApp", () => {
+  test("renderiza el logo VetCare Pro", () => {
     renderWithRouter()
-    expect(screen.getByText("🐾 MascotApp")).toBeInTheDocument()
+    // CORRECCIÓN: Se actualizó el texto esperado
+    expect(screen.getByText("VetCare Pro")).toBeInTheDocument()
   })
 
   test("renderiza los links de navegación", () => {
@@ -25,7 +26,8 @@ describe("MainLayout", () => {
 
   test("el logo enlaza a la página principal", () => {
     renderWithRouter()
-    const logoLink = screen.getByText("🐾 MascotApp").closest("a")
+    // CORRECCIÓN: Se busca el link usando el texto correcto
+    const logoLink = screen.getByText("VetCare Pro").closest("a")
     expect(logoLink).toHaveAttribute("href", "/")
   })
 

@@ -2,6 +2,7 @@ import { screen, waitFor } from "@testing-library/react"
 import { renderWithProviders } from "../../../../test-utils"
 import CitasPage from "../CitasPage"
 
+// Mock del fetch global
 global.fetch = jest.fn()
 
 describe("CitasPage", () => {
@@ -14,9 +15,10 @@ describe("CitasPage", () => {
   })
 
   test("muestra el título de la página", () => {
-    fetch.mockImplementation(() => new Promise(() => {}))
+    fetch.mockImplementation(() => new Promise(() => {})) // Promesa pendiente para estado de carga
     renderWithProviders(<CitasPage />)
-    expect(screen.getByText("Citas del Día")).toBeInTheDocument()
+    // CORRECCIÓN: El título real en el componente es "Gestión de Citas"
+    expect(screen.getByText("Gestión de Citas")).toBeInTheDocument()
   })
 
   test("muestra el label del selector de fecha", () => {
@@ -44,9 +46,12 @@ describe("CitasPage", () => {
 
     renderWithProviders(<CitasPage />)
 
+    // Esperamos a que el mock se resuelva y aparezca la hora
     await waitFor(() => {
       expect(screen.getByText("09:00")).toBeInTheDocument()
     })
+    // Verificamos también que aparezca el nombre de la mascota
+    expect(screen.getByText("Max")).toBeInTheDocument()
   })
 
   test("muestra mensaje cuando no hay citas", async () => {
@@ -57,6 +62,7 @@ describe("CitasPage", () => {
     renderWithProviders(<CitasPage />)
 
     await waitFor(() => {
+      // El texto coincide con el renderizado condicional de tu componente
       expect(screen.getByText("No hay citas programadas para esta fecha")).toBeInTheDocument()
     })
   })

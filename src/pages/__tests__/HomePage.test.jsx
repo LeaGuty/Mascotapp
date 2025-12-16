@@ -9,29 +9,33 @@ const renderWithRouter = (component) => {
 describe("HomePage", () => {
   test("renderiza el título de bienvenida", () => {
     renderWithRouter(<HomePage />)
-    expect(screen.getByText("Bienvenido a MascotApp")).toBeInTheDocument()
+    // Actualizado a VetCare Pro
+    expect(screen.getByText("Bienvenido a VetCare Pro")).toBeInTheDocument()
   })
 
   test("renderiza la descripción", () => {
     renderWithRouter(<HomePage />)
+    // Actualizado con el texto real de HomePage.jsx
     expect(
-      screen.getByText('Sistema de gestión para la veterinaria "Cuidado Animal"')
+      screen.getByText("Sistema integral de gestión veterinaria para optimizar el cuidado de tus pacientes")
     ).toBeInTheDocument()
   })
 
   test("renderiza las 3 cards de navegación", () => {
     renderWithRouter(<HomePage />)
-    expect(screen.getByText("👥 Clientes")).toBeInTheDocument()
-    expect(screen.getByText("🐕 Mascotas")).toBeInTheDocument()
-    expect(screen.getByText("📅 Citas")).toBeInTheDocument()
+    // Se eliminaron los emojis porque son SVGs separados en el componente real
+    expect(screen.getByText("Clientes")).toBeInTheDocument()
+    expect(screen.getByText("Mascotas")).toBeInTheDocument()
+    expect(screen.getByText("Citas")).toBeInTheDocument()
   })
 
   test("los links apuntan a las rutas correctas", () => {
     renderWithRouter(<HomePage />)
     
-    const clientesLink = screen.getByText("👥 Clientes").closest("a")
-    const mascotasLink = screen.getByText("🐕 Mascotas").closest("a")
-    const citasLink = screen.getByText("📅 Citas").closest("a")
+    // Se eliminaron los emojis para encontrar el texto
+    const clientesLink = screen.getByText("Clientes").closest("a")
+    const mascotasLink = screen.getByText("Mascotas").closest("a")
+    const citasLink = screen.getByText("Citas").closest("a")
 
     expect(clientesLink).toHaveAttribute("href", "/clientes")
     expect(mascotasLink).toHaveAttribute("href", "/mascotas")
