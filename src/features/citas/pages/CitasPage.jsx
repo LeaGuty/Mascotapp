@@ -12,11 +12,7 @@ function CitasPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestión de Citas</h1>
-        <p className="text-gray-600">
-          Listado via <span className="font-mono bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded">REST API</span>
-          {" • "}
-          Detalle via <span className="font-mono bg-purple-100 text-purple-700 px-2 py-0.5 rounded">GraphQL</span>
-        </p>
+        
       </div>
 
       {/* Selector de fecha */}

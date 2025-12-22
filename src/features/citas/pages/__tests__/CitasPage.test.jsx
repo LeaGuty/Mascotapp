@@ -66,11 +66,4 @@ describe("CitasPage", () => {
       expect(screen.getByText("No hay citas programadas para esta fecha")).toBeInTheDocument()
     })
   })
-
-  test("muestra indicadores de REST y GraphQL", () => {
-    fetch.mockImplementation(() => new Promise(() => {}))
-    renderWithProviders(<CitasPage />)
-    expect(screen.getByText("REST API")).toBeInTheDocument()
-    expect(screen.getByText("GraphQL")).toBeInTheDocument()
-  })
 })

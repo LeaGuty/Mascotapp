@@ -20,11 +20,7 @@ function MascotasPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestión de Mascotas</h1>
-        <p className="text-gray-600">
-          Listado via <span className="font-mono bg-blue-100 text-blue-700 px-2 py-0.5 rounded">REST API</span>
-          {" • "}
-          Detalle via <span className="font-mono bg-purple-100 text-purple-700 px-2 py-0.5 rounded">GraphQL</span>
-        </p>
+        
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

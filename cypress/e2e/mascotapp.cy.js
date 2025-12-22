@@ -70,10 +70,7 @@ describe("MascotApp E2E Tests", () => {
       cy.contains("María García").should("be.visible")
     })
 
-    it("muestra indicadores de REST y GraphQL", () => {
-      cy.contains("REST API").should("be.visible")
-      cy.contains("GraphQL").should("be.visible")
-    })
+ 
 
     it("muestra el panel de detalle vacío inicialmente", () => {
       // CAMBIO: El texto real es más largo
